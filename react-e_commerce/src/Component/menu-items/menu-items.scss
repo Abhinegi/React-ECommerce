@@ -1,0 +1,28 @@
+.menu-item{
+    border: solid 2px black;
+    width:500px;
+    align-items: center;
+    margin:0 auto;
+    background-color: azure;
+    height: 240px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px 2px gray;
+}
+.menu-item:hover{
+  transform:scale(1.05,1.05) ;
+}
+
+.title{
+border: solid 1px white;
+background-color: white;
+color:green;
+text-align: center;
+opacity: 0.7;
+width: 50%;
+margin:0 auto;
+}
+h3{
+font-family: 'Fraunces', serif;
+}
