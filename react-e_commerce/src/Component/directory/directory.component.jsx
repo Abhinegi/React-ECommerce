@@ -42,7 +42,7 @@ export class Directory extends React.Component
 
     render(){
         return <>{
-            this.state.sections.map((section)=>(<MenuItem key={section.id}  {...section} />        ))
+            this.state.sections.map((section)=><MenuItem key={section.id}  {...section} />        )
         }
         </>
     }
