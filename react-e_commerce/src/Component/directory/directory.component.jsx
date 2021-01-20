@@ -20,7 +20,7 @@ export class Directory extends React.Component
                 },
                 {
                     "title":"Gaming PCs",
-                    "imageUrl":"https://www.wepc.com/wp-content/uploads/2018/02/william2006523-1.jpg",
+                    "imageUrl":"https://i.pinimg.com/originals/1d/87/27/1d8727d6e95f2b9bd2429dd6df983714.jpg",
                     "id":3,
                     "linkUrl":"gaming-pc"
                 },

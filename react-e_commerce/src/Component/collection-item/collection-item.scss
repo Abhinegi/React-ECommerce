@@ -4,7 +4,7 @@
     flex-direction: column;
     height: 350px;
     align-items: center;
-    box-shadow: 3px 1px 2px 2px grey;
+    box-shadow: 1px 1px 1px 2px grey;
     border: solid 2px ghostwhite;
   
     .image {
@@ -35,3 +35,7 @@
     }
   }
   
+
+  .collection-item:hover{
+    box-shadow: 2px 2px 5px 3px grey;
+  }
