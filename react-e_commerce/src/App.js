@@ -1,12 +1,14 @@
 import './App.scss';
 import React from 'react';
 import HomePage from './Pages/HomePage/homepage.component';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch,Redirect} from 'react-router-dom';
 import Shop from './Pages/shop/shop.component';
 import Header from './Component/header/header.jsx';
 import firebase from "firebase";
 import {createUserProfileDocument} from './firebase/firebase.util';
 import SignInAndSignUp from "./Pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx";
+import {connect} from 'react-redux';
+import  {userAction} from './redux/user.action';
 
 class App extends React.Component {
     constructor() {
@@ -20,20 +22,16 @@ class App extends React.Component {
 
     componentDidMount() {
         this.unSubscribeUserAuthentication = firebase.auth().onAuthStateChanged(async user => {
-            console.log(user);
             if (user) {
                 const userRef = await createUserProfileDocument(user);
-                console.log(userRef);
                 userRef && userRef.onSnapshot(snapshot => {
-                    this.setState({
-                        currentUser: {
+                    this.props.setCurrentUser({
                             id: snapshot.id,
                             ...snapshot.data()
-                        }
                     });
                 });
             } else {
-                this.setState({currentUser: null});
+                this.props.setCurrentUser(null);
             }
         });
     }
@@ -46,12 +44,12 @@ class App extends React.Component {
     render() {
         return (
             <div style={{display: 'flex', flexDirection: 'column'}}>
-                <Header currentUser={this.state.currentUser}/>
+                <Header/>
                 <div className="mb-lg-5"/>
                 <Switch>
                     <Route exact path="/" component={HomePage}/>
                     <Route exact path="/shop" component={Shop}/>
-                    <Route exact path="/sign-in" component={SignInAndSignUp}/>
+                    <Route exact path="/sign-in" render={()=>this.props.currentUser ? <Redirect to='/'/> : <SignInAndSignUp/>}/>
                 </Switch>
             </div>
         );
@@ -59,4 +57,12 @@ class App extends React.Component {
 
 }
 
-export default App;
+
+const mapStateToProps = state =>({
+    currentUser :  state.user.currentUser
+})
+
+const mapDispatchToProps = dispatch =>({
+    setCurrentUser : (user) => dispatch(userAction(user))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(App);

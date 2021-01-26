@@ -2,28 +2,41 @@ import {Navbar,Nav} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import './header.scss';
 import {auth} from '../../firebase/firebase.util';
+import {connect} from 'react-redux';
+import CartIcon from '../cart-icon/cart-icon.component'
+import CartDropDown from '../cart-dropdown/cart-dropdown.component';
 
-const Header = ({currentUser})=>{
+const Header = ({currentUser,hideCartDropDown})=>{
     return (
         <>
         <Navbar bg="dark" fixed="top" variant="dark">
             <Navbar.Brand>  <Link to="/" className="header-brand">  G@me Frikis </Link> </Navbar.Brand>
             <Nav className="ml-auto">
-                <Nav.Link > <Link to="/shop" className="header-content"> Shop </Link> </Nav.Link>
-                <Nav.Link> <Link to="/" className="header-content"> Contact </Link> </Nav.Link>
+              <CartIcon/>
+              <Link to="/shop" className="header-content"> Shop </Link> 
+               <Link to="/" className="header-content"> Contact </Link> 
                 {
                     currentUser ?
-                        <Nav.Link>
-                            <Link onClick={()=> auth.signOut()}  className="header-content"> SignOut </Link>
-                        </Nav.Link>
+                        <Link to="/" onClick={()=> auth.signOut()}  className="header-content"> SignOut </Link>
                         :
-                        <Nav.Link> <Link to="/sign-in" className="header-content"> SignIn </Link> </Nav.Link>
+                        <Link to="/sign-in" className="header-content"> SignIn </Link> 
                 }
 
             </Nav>
         </Navbar>
+        {
+        hideCartDropDown?null:
+        <CartDropDown/>
+        }
         </>
     )
 }
 
-export default Header;
+const mapStateToProps = state =>{
+    return {
+        currentUser : state.user.currentUser,
+        hideCartDropDown:state.cart.hidden
+    }
+}
+
+export default connect(mapStateToProps)(Header);

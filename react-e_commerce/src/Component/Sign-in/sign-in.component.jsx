@@ -3,6 +3,7 @@ import FormInput from '../../Component/form-input/form-input.component';
 import './sign-in.scss';
 import CustomButton from '../../Component/custom-button/custom-button.component';
 import {auth ,signInWithGoogle} from '../../firebase/firebase.util';
+import {connect} from 'react-redux';
 
 class SignIn extends React.Component {
     constructor() {
@@ -60,4 +61,8 @@ class SignIn extends React.Component {
     }
 }
 
-export default SignIn;
+const mapStateToProps = state =>({
+    currentUser : state.user.currentUser
+})
+
+export default connect(mapStateToProps)(SignIn);
