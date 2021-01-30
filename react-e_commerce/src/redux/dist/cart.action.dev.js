@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.cartHidden = void 0;
+exports.addItem = exports.cartHidden = void 0;
 
 var _constants = _interopRequireDefault(require("./constants"));
 
@@ -16,3 +16,12 @@ var cartHidden = function cartHidden() {
 };
 
 exports.cartHidden = cartHidden;
+
+var addItem = function addItem(item) {
+  return {
+    type: _constants["default"].ADD_ITEM,
+    payload: item
+  };
+};
+
+exports.addItem = addItem;
