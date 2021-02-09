@@ -9,6 +9,8 @@ import {createUserProfileDocument} from './firebase/firebase.util';
 import SignInAndSignUp from "./Pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx";
 import {connect} from 'react-redux';
 import  {userAction} from './redux/user.action';
+import {userSelector} from './App.utility'
+import cartCheckout from './Component/cart-checkout/cart-checkout.component';
 
 class App extends React.Component {
     constructor() {
@@ -49,6 +51,7 @@ class App extends React.Component {
                 <Switch>
                     <Route exact path="/" component={HomePage}/>
                     <Route exact path="/shop" component={Shop}/>
+                    <Route exact path="/checkout" component={cartCheckout}/>
                     <Route exact path="/sign-in" render={()=>this.props.currentUser ? <Redirect to='/'/> : <SignInAndSignUp/>}/>
                 </Switch>
             </div>
@@ -59,7 +62,7 @@ class App extends React.Component {
 
 
 const mapStateToProps = state =>({
-    currentUser :  state.user.currentUser
+    currentUser :  userSelector(state)
 })
 
 const mapDispatchToProps = dispatch =>({
