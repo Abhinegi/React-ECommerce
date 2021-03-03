@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.addItem = exports.cartHidden = void 0;
+exports.removeItem = exports.addItem = exports.cartHidden = void 0;
 
 var _constants = _interopRequireDefault(require("./constants"));
 
@@ -25,3 +25,12 @@ var addItem = function addItem(item) {
 };
 
 exports.addItem = addItem;
+
+var removeItem = function removeItem(item) {
+  return {
+    type: _constants["default"].REMOVE_ITEM,
+    payload: item
+  };
+};
+
+exports.removeItem = removeItem;

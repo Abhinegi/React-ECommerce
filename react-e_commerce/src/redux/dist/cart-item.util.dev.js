@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.addItemToCart = void 0;
+exports.removeItemFromCart = exports.addItemToCart = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -35,3 +35,12 @@ var addItemToCart = function addItemToCart(cartItems, cartItemToAdd) {
 };
 
 exports.addItemToCart = addItemToCart;
+
+var removeItemFromCart = function removeItemFromCart(cartItems, cartItemToRemove) {
+  var itemRemaining = cartItems.filter(function (item) {
+    return item.id != cartItemToRemove.id;
+  });
+  return itemRemaining;
+};
+
+exports.removeItemFromCart = removeItemFromCart;

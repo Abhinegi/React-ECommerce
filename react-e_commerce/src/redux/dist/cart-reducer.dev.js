@@ -37,6 +37,11 @@ var cartReducer = function cartReducer() {
         items: (0, _cartItem.addItemToCart)(state.items, action.payload)
       });
 
+    case _constants["default"].REMOVE_ITEM:
+      return _objectSpread({}, state, {
+        items: (0, _cartItem.removeItemFromCart)(state.items, action.payload)
+      });
+
     default:
       return state;
   }

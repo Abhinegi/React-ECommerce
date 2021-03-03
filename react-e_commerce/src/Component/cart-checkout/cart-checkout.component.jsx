@@ -1,6 +1,7 @@
 import {cartItemSelector,cartItemTotalSelector} from './cart-checkout.utility';
 import {createStructuredSelector} from 'reselect';
 import {connect} from 'react-redux';
+import {removeItem} from '../../redux/cart.action'
 const cartCheckout = (props)=>{
     console.log(props)
     return  (
@@ -24,7 +25,7 @@ const cartCheckout = (props)=>{
                 <td>{item.name}</td>
                 <td>{item.quantity}</td>
                 <td>{item.price}</td>
-                <td> X </td>
+                <td style={{cursor:'pointer'}} onClick={()=>{props.dispatch(removeItem(item))}}> &#10005; </td>
                 </tr>
                     )
             }

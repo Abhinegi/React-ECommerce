@@ -8,3 +8,7 @@ export const addItem =(item)=>({
     payload:item
 })
 
+export const removeItem =(item)=>({
+    type:Constants.REMOVE_ITEM,
+    payload:item
+})

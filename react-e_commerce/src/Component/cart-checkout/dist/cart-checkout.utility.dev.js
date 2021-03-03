@@ -13,9 +13,7 @@ var cartItems = function cartItems(state) {
 
 exports.cartItems = cartItems;
 var cartItemTotalSelector = (0, _reselect.createSelector)([cartItems], function (cartItem) {
-  console.log(cartItem);
-  return cartItem.items.reduce(function (previous, current, value) {
-    console.log(previous, current, value);
+  return cartItem.items.reduce(function (previous, current) {
     return previous + current.quantity * current.price;
   }, 0);
 });
